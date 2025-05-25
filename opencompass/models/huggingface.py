@@ -132,7 +132,7 @@ class HuggingFace(BaseModel):
                         tokenizer_kwargs: dict):
         from transformers import AutoTokenizer
         self.tokenizer = AutoTokenizer.from_pretrained(
-            tokenizer_path if tokenizer_path else path, **tokenizer_kwargs)
+            tokenizer_path if tokenizer_path else path, trust_remote_code=True, **tokenizer_kwargs)
 
         # A patch for some models without pad_token_id
         if self.pad_token_id is not None:
@@ -678,7 +678,7 @@ class HuggingFaceCausalLM(HuggingFace):
         from transformers import AutoModelForCausalLM
 
         self._set_model_kwargs_torch_dtype(model_kwargs)
-        self.model = AutoModelForCausalLM.from_pretrained(path, **model_kwargs)
+        self.model = AutoModelForCausalLM.from_pretrained(path, trust_remote_code=True,**model_kwargs)
         if peft_path is not None:
             from peft import PeftModel
             self.model = PeftModel.from_pretrained(self.model,
