@@ -15,3 +15,4 @@ from .icl_plugin_evaluator import TEvalEvaluator  # noqa
 from .icl_toxic_evaluator import ToxicEvaluator  # noqa
 from .lm_evaluator import LMEvaluator  # noqa
 from .math_evaluator import MATHEvaluator  # noqa
+from .icl_prompt_evaluator import PaperCLSEvaluator  # noqa
